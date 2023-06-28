@@ -1,4 +1,5 @@
 import 'package:family_nurse/componenets_page.dart';
+import 'package:family_nurse/main.dart';
 import 'package:family_nurse/page_one.dart';
 import 'package:family_nurse/widgets/custom_button.dart';
 import 'package:family_nurse/widgets/start_page.dart';
@@ -107,7 +108,10 @@ class TestWidget extends StatelessWidget {
           CustomButton(
             text: 'Restart Quiz',
             color: Colors.purple,
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const MyApp()));
+            },
             textColor: Colors.white,
           ),
           const SizedBox(
@@ -119,7 +123,7 @@ class TestWidget extends StatelessWidget {
             textColor: Colors.grey,
             onTap: () {
               Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const CallData()));
+                  MaterialPageRoute(builder: (context) => const MyApp()));
             },
           ),
         ]),
