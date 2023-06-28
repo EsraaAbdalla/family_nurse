@@ -1,4 +1,7 @@
+import 'package:family_nurse/componenets_page.dart';
+import 'package:family_nurse/page_one.dart';
 import 'package:family_nurse/widgets/custom_button.dart';
+import 'package:family_nurse/widgets/start_page.dart';
 import 'package:flutter/material.dart';
 
 class TestWidget extends StatelessWidget {
@@ -35,8 +38,8 @@ class TestWidget extends StatelessWidget {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Padding(
+                children: [
+                  const Padding(
                     padding: EdgeInsets.only(left: 10, bottom: 15),
                     child: Text(
                       'Correct Answers',
@@ -48,10 +51,10 @@ class TestWidget extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(right: 10, top: 20),
+                    padding: const EdgeInsets.only(right: 10, top: 20),
                     child: Text(
-                      '9',
-                      style: TextStyle(
+                      '$GreenResult',
+                      style: const TextStyle(
                         color: Colors.black,
                         // fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -71,8 +74,8 @@ class TestWidget extends StatelessWidget {
               ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: const [
-                  Padding(
+                children: [
+                  const Padding(
                     padding: EdgeInsets.only(left: 10, bottom: 15),
                     child: Text(
                       'Wrong Answers',
@@ -84,10 +87,10 @@ class TestWidget extends StatelessWidget {
                     ),
                   ),
                   Padding(
-                    padding: EdgeInsets.only(right: 10, top: 20),
+                    padding: const EdgeInsets.only(right: 10, top: 20),
                     child: Text(
-                      '27',
-                      style: TextStyle(
+                      '${filteredItems.length - GreenResult}',
+                      style: const TextStyle(
                         color: Colors.black,
                         // fontWeight: FontWeight.bold,
                         fontSize: 18,
@@ -114,7 +117,10 @@ class TestWidget extends StatelessWidget {
             color: Colors.white,
             text: 'Select Another Quiz',
             textColor: Colors.grey,
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => const CallData()));
+            },
           ),
         ]),
       ),

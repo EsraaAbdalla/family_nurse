@@ -3,6 +3,7 @@
 import 'dart:convert';
 
 import 'package:family_nurse/widgets/custom_button.dart';
+import 'package:family_nurse/widgets/result.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
@@ -12,6 +13,12 @@ var listGlobal;
 var filteredItems;
 bool _isClicked = false;
 var CorrectAns;
+int GreenResult = 0;
+
+int Result() {
+  GreenResult++;
+  return GreenResult;
+}
 
 var i = 0;
 int special() {
@@ -29,11 +36,11 @@ Future loadJsonData(sms) async {
   final jsonData = await rootBundle.loadString('assets/Questions.json');
   listGlobal = jsonDecode(jsonData);
   //print(listGlobal);
-  print(sms);
+  // print(sms);
   filteredItems = listGlobal.where((item) => item['GroupId'] == sms).toList();
-  print(filteredItems);
+  // print(filteredItems);
   CorrectAns = filteredItems[i]['Answer'];
-  print(CorrectAns);
+  //print(CorrectAns);
   return filteredItems;
 }
 
@@ -206,10 +213,17 @@ class _StartPageState extends State<StartPage> {
                   onTap: () {
                     special();
                     changeNumber();
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => StartPage(q: qID)));
+                    if (number == filteredItems.length) {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const TestWidget()));
+                    } else {
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => StartPage(q: qID)));
+                    }
                   },
                   color: Colors.purple,
                   text: 'Next',
@@ -298,11 +312,14 @@ class _ChooseState extends State<Choose> {
 
                   _isSelected = !_isSelected;
                 });
+
                 widget.onChanged(_isSelected ? widget.id : '');
                 print(widget.id);
 
                 if (widget.id == CorrectAns) {
                   isCorrect = true;
+                  Result();
+                  print(GreenResult);
                 } else {
                   isCorrect = false;
                 }
