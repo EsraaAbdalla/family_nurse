@@ -1,6 +1,6 @@
-import 'package:family_nurse/componenets_page.dart';
+// import 'package:family_nurse/componenets_page.dart';
 import 'package:family_nurse/main.dart';
-import 'package:family_nurse/page_one.dart';
+
 import 'package:family_nurse/widgets/custom_button.dart';
 import 'package:family_nurse/widgets/start_page.dart';
 import 'package:flutter/material.dart';
@@ -14,9 +14,13 @@ class TestWidget extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.only(top: 50),
         child: Column(children: [
+          // Image.asset(
+          //   'result.png',
+          //   height: 100,
+          // ),
           Image.asset(
-            'images/result.png',
-            height: 100,
+            'assets/result.png',
+            height: MediaQuery.of(context).size.height * 0.2,
           ),
           const SizedBox(
             height: 30,
@@ -109,8 +113,16 @@ class TestWidget extends StatelessWidget {
             text: 'Restart Quiz',
             color: Colors.purple,
             onTap: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => const MyApp()));
+              filteredItems.clear();
+              CorrectAns = null;
+              i = 0;
+              number = 1;
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => StartPage(
+                            q: qID,
+                          )));
             },
             textColor: Colors.white,
           ),
@@ -122,6 +134,10 @@ class TestWidget extends StatelessWidget {
             text: 'Select Another Quiz',
             textColor: Colors.grey,
             onTap: () {
+              filteredItems.clear();
+              CorrectAns = null;
+              i = 0;
+              print(filteredItems);
               Navigator.push(context,
                   MaterialPageRoute(builder: (context) => const MyApp()));
             },
