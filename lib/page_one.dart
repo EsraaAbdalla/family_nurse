@@ -19,9 +19,11 @@ class _PageOneState extends State<PageOne> {
         elevation: 0.0,
         shadowColor: Colors.white,
         backgroundColor: Colors.white,
-        title: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 70.0),
-          child: Text(
+        title: Padding(
+          padding: EdgeInsets.only(
+              left: MediaQuery.of(context).size.width * 0.2,
+              right: MediaQuery.of(context).size.width * 0.2),
+          child: const Text(
             "Groups",
             style: TextStyle(fontSize: 25.0, color: Colors.black),
           ),
@@ -36,9 +38,11 @@ class _PageOneState extends State<PageOne> {
                 title: Text(Data[index]['GroupName']),
                 trailing: IconButton(
                     onPressed: () {
+                      // print(filteredItems);
+                      // filteredItems.clear();
                       // loadJsonData();
                       //   loadJsonData();
-                      // await loadJsonData(Data[index]['ID']);
+                      // await loadJsonData(Data[n]['ID']);
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -49,7 +53,7 @@ class _PageOneState extends State<PageOne> {
                     icon: const Icon(Icons.arrow_circle_right_outlined)),
               ));
         },
-        onReorder: (int oldIndex, int newIndex) {
+        onReorder: (int oldn, int newIndex) {
           // your reorder logic here
         },
         itemCount: Data == null ? 0 : Data.length,

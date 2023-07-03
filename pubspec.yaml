@@ -62,7 +62,7 @@ flutter:
   assets:
     - assets/QuestionGroup.json
     - assets/Questions.json
-    - assets/images/
+    - assets/result.png
     
 
   # An image asset can refer to one or more resolution-specific "variants", see

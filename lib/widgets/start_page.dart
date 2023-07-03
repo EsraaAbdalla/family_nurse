@@ -38,7 +38,8 @@ Future loadJsonData(sms) async {
   //print(listGlobal);
   // print(sms);
   filteredItems = listGlobal.where((item) => item['GroupId'] == sms).toList();
-  // print(filteredItems);
+  print(filteredItems);
+
   CorrectAns = filteredItems[i]['Answer'];
   //print(CorrectAns);
   return filteredItems;
@@ -130,7 +131,7 @@ class _StartPageState extends State<StartPage> {
                     '${filteredItems[i]['Question']}',
                     style: TextStyle(
                       color: Colors.black,
-                      fontSize: screenWidth * 0.03,
+                      fontSize: screenWidth * 0.04,
                     ),
                   ),
                 ),
@@ -213,7 +214,13 @@ class _StartPageState extends State<StartPage> {
                   onTap: () {
                     special();
                     changeNumber();
-                    if (number == filteredItems.length) {
+                    // if (number == filteredItems.length) {
+                    //   i = 0;
+                    // }
+
+                    if (number == filteredItems.length + 1) {
+                      i = 0;
+                      number = 0;
                       Navigator.push(
                           context,
                           MaterialPageRoute(
@@ -328,11 +335,12 @@ class _ChooseState extends State<Choose> {
           height: 50,
           width: widget.Conwidth,
           decoration: BoxDecoration(
+              color: Colors.white,
               border: Border.all(
-            color: _isSelected
-                ? (isCorrect ? Colors.green : Colors.red)
-                : Colors.white,
-          )),
+                color: _isSelected
+                    ? (isCorrect ? Colors.green : Colors.red)
+                    : Colors.white,
+              )),
           child: Row(
             children: [
               Padding(
